@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Villa - Properties</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    /* ===== Top Bar ===== */
+     .top-bar {
+      background: #f8f8f8;
+      color: rgba(61, 61, 63, 0.65);
+      font-size: 15px;
+      padding: 8px 0;
+    }
+
+    .top-bar i {
+      margin-right: 6px;
+      color: #ff5a3c;
+      transition: 0.3s;
+    }
+
+    .top-bar .icons i {
+      color: rgba(161, 151, 151, 0.6);
+      margin-left: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 20px;
+    }
+
+    .top-bar .icons i:hover {
+      color: orangered;
+      transform: scale(1.2);
+    }
+
+    /* ===== Navbar ===== */
+    .navbar {
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 24px;
+      color: #ff5a3c !important;
+    }
+
+    .navbar-nav .nav-link {
+      font-weight: 500;
+      margin-right: 20px;
+      position: relative;
+    }
+
+    .navbar-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -3px;
+      background: #ff5a3c;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover::after {
+      width: 100%;
+    }
+/* ===== Button ===== */
+.btn-schedule {
+  display: inline-flex;
+  align-items: center;
+  background: #000;   /* Always black */
+  color: #fff;        /* Text default white */
+  font-weight: 500;
+  border-radius: 25px;
+  padding: 8px 18px;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+/* Icon Circle */
+.btn-schedule .icon-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;       /* Circle size */
+  height: 35px;
+  border-radius: 50%;
+  background: orange; /* Circle always orange */
+  color: #fff;        /* Icon color */
+  margin-right: 8px;
+  transition: 0.3s;
+}
+
+/* Blink Animation */
+@keyframes blink {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.6; }
+}
+
+/* Hover Effects */
+.btn-schedule:hover {
+  background: #000 !important;  /* Background stays black */
+}
+
+.btn-schedule:hover .btn-text {
+  color: orange;  /* Text turns orange */
+}
+
+.btn-schedule:hover .icon-circle {
+  animation: blink 0.6s ease-in-out 1; /* Icon blinks */
+}
+
+
+    /* ===== Hero Section ===== */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(60%);
+      animation: fadeIn 1.2s ease;
+    }
+
+    .hero .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      text-transform: uppercase;
+      animation: fadeDown 1.2s ease;
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* ===== Filter Buttons ===== */
+    .filter-btns {
+      text-align: center;
+      margin: 40px 0 20px;
+      gap: 15px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .filter-btns .btn {
+      border-radius: 10px;
+      padding: 12px 25px;
+      color: white;
+      background-color: #343a40;
+      border: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .filter-btns .btn.selected {
+      background-color: #ff5a3c;
+    }
+
+    .filter-btns .btn:hover {
+      background-color: #ff5a3c;
+    }
+
+    /* ===== Cards ===== */
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .card {
+      width: 20rem;
+      transition: 0.3s;
+      border: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card-body h6.card-title {
+      background: #ffc107;
+      padding: 5px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .card-body .btn {
+      border-radius: 50px;
+      width: 100%;
+    }
+
+    /* ===== Pagination ===== */
+    .pagination-holder {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding-bottom: 60px;
+    }
+
+    .pagination-holder div {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .pagination-holder .active {
+      background-color: #ff5a3c;
+    }
+
+    .pagination-holder div:not(.active) {
+      background-color: #212529;
+    }
+
+    .pagination-holder div:hover {
+      transform: scale(1.15);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 25px 0;
+      font-size: 15px;
+    }
+
+    footer a {
+      color: #ff5a3c;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container d-flex justify-content-between">
+      <div>
+        <i class="fa fa-envelope"></i> info@company.com
+        &nbsp;&nbsp;
+        <i class="fa fa-map-marker-alt"></i> Sunny Isles Beach, FL 33160
+      </div>
+      <div class="icons">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-linkedin-in"></i>
+        <i class="fab fa-instagram"></i>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-white sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">VILLA</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="Home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active text-danger" href="property.html">Properties</a></li>
+          <li class="nav-item"><a class="nav-link" href="Property-details.html">Property Details</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacts.html">Contact Us</a></li>
+        </ul>
+        <a href="#" class="btn btn-schedule ms-3">
+  <span class="icon-circle">
+    <i class="fa-solid fa-calendar-days"></i>
+  </span>
+  <span class="btn-text">Schedule a Visit</span>
+</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="IMAGE/page-heading-bg.jpg" alt="Properties Banner">
+    <div class="container">
+      <nav class="breadcrumb justify-content-center mb-2">
+        <a class="breadcrumb-item text-white-50" href="Home.html" style="text-decoration: none;">Home</a>
+        <span class="breadcrumb-item active text-white">Properties</span>
+      </nav>
+      <h1>Properties</h1>
+    </div>
+  </section>
+
+  <!-- Filter Buttons -->
+  <div class="filter-btns">
+    <button class="btn selected">Show All</button>
+    <button class="btn">Apartment</button>
+    <button class="btn">Villa</button>
+    <button class="btn">Pent House</button>
+  </div>
+
+  <!-- Property Cards -->
+  <div class="container cards">
+    <!-- Repeat this card 6 times -->
+    <div class="card">
+      <img src="IMAGE/property-01.jpg" class="card-img-top" alt="Property 1">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h6 class="card-title">LUXURY VILLA</h6>
+          <h5 class="text-danger">$2,264,000</h5>
+        </div>
+        <p><b>18 New Street Miami, OR 97219</b></p>
+        <p>Bedrooms: <b>8</b> &nbsp; Bathrooms: <b>8</b></p>
+        <p>Area: <b>545m²</b> &nbsp; Floor: <b>3</b> &nbsp; Parking: <b>6 spots</b></p>
+        <button class="btn btn-dark">Schedule a Visit</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="IMAGE/property-02.jpg" class="card-img-top" alt="Property 2">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h6 class="card-title">APARTMENT</h6>
+          <h5 class="text-danger">$1,850,000</h5>
+        </div>
+        <p><b>45 Ocean Drive, LA 90001</b></p>
+        <p>Bedrooms: <b>6</b> &nbsp; Bathrooms: <b>6</b></p>
+        <p>Area: <b>420m²</b> &nbsp; Floor: <b>2</b> &nbsp; Parking: <b>3 spots</b></p>
+        <button class="btn btn-dark">Schedule a Visit</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="IMAGE/property-03.jpg" class="card-img-top" alt="Property 3">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h6 class="card-title">PENT HOUSE</h6>
+          <h5 class="text-danger">$3,550,000</h5>
+        </div>
+        <p><b>90 Skyline Ave, NY 10001</b></p>
+        <p>Bedrooms: <b>10</b> &nbsp; Bathrooms: <b>9</b></p>
+        <p>Area: <b>720m²</b> &nbsp; Floor: <b>4</b> &nbsp; Parking: <b>5 spots</b></p>
+        <button class="btn btn-dark">Schedule a Visit</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="IMAGE/property-04.jpg" class="card-img-top" alt="Property 4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h6 class="card-title">MODERN HOUSE</h6>
+          <h5 class="text-danger">$2,010,000</h5>
+        </div>
+        <p><b>56 Palm Street, TX 75201</b></p>
+        <p>Bedrooms: <b>7</b> &nbsp; Bathrooms: <b>7</b></p>
+        <p>Area: <b>600m²</b> &nbsp; Floor: <b>3</b> &nbsp; Parking: <b>4 spots</b></p>
+        <button class="btn btn-dark">Schedule a Visit</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="IMAGE/property-05.jpg" class="card-img-top" alt="Property 5">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h6 class="card-title">CITY APARTMENT</h6>
+          <h5 class="text-danger">$1,350,000</h5>
+        </div>
+        <p><b>102 Green Ave, Chicago, IL</b></p>
+        <p>Bedrooms: <b>5</b> &nbsp; Bathrooms: <b>5</b></p>
+        <p>Area: <b>380m²</b> &nbsp; Floor: <b>2</b> &nbsp; Parking: <b>2 spots</b></p>
+        <button class="btn btn-dark">Schedule a Visit</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="IMAGE/property-06.jpg" class="card-img-top" alt="Property 6">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h6 class="card-title">BEACH VILLA</h6>
+          <h5 class="text-danger">$4,200,000</h5>
+        </div>
+        <p><b>12 Palm Beach Road, FL</b></p>
+        <p>Bedrooms: <b>9</b> &nbsp; Bathrooms: <b>9</b></p>
+        <p>Area: <b>800m²</b> &nbsp; Floor: <b>3</b> &nbsp; Parking: <b>5 spots</b></p>
+        <button class="btn btn-dark">Schedule a Visit</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="IMAGE/property-01.jpg" class="card-img-top" alt="Property 1">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h6 class="card-title">LUXURY VILLA</h6>
+          <h5 class="text-danger">$2,264,000</h5>
+        </div>
+        <p><b>18 New Street Miami, OR 97219</b></p>
+        <p>Bedrooms: <b>8</b> &nbsp; Bathrooms: <b>8</b></p>
+        <p>Area: <b>545m²</b> &nbsp; Floor: <b>3</b> &nbsp; Parking: <b>6 spots</b></p>
+        <button class="btn btn-dark">Schedule a Visit</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="IMAGE/property-02.jpg" class="card-img-top" alt="Property 2">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h6 class="card-title">APARTMENT</h6>
+          <h5 class="text-danger">$1,850,000</h5>
+        </div>
+        <p><b>45 Ocean Drive, LA 90001</b></p>
+        <p>Bedrooms: <b>6</b> &nbsp; Bathrooms: <b>6</b></p>
+        <p>Area: <b>420m²</b> &nbsp; Floor: <b>2</b> &nbsp; Parking: <b>3 spots</b></p>
+        <button class="btn btn-dark">Schedule a Visit</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="IMAGE/property-03.jpg" class="card-img-top" alt="Property 3">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h6 class="card-title">PENT HOUSE</h6>
+          <h5 class="text-danger">$3,550,000</h5>
+        </div>
+        <p><b>90 Skyline Ave, NY 10001</b></p>
+        <p>Bedrooms: <b>10</b> &nbsp; Bathrooms: <b>9</b></p>
+        <p>Area: <b>720m²</b> &nbsp; Floor: <b>4</b> &nbsp; Parking: <b>5 spots</b></p>
+        <button class="btn btn-dark">Schedule a Visit</button>
+      </div>
+    </div>
+
+  </div>
+
+  
+
+  <!-- Pagination -->
+  <div class="pagination-holder">
+  <div><i class="fa-solid fa-angle-left"></i></div>
+  <div class="active">1</div>
+  <div>2</div>
+  <div>3</div>
+  <div><i class="fa-solid fa-angle-right"></i></div>
+</div>
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>Copyright © 2048 <a href="#">Villa Agency</a>. All rights reserved. Design by <strong style="color:#ff5a3c;">Satyabrata Pati</strong>
+</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
